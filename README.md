@@ -3,36 +3,38 @@
 ## Author notes
 
 -   This is a distilled version of my personal notes from reading various thinkpiece about a novel way of making websites / web apps using Datastar.
--   Essentially, it's like making a game: listen for user actions interacting with the page, the underlying data get mutated, then the page get re-rendered to reflect said changes.
+-   Essentially, it's like making a game: the app listens for user actions interacting with the page, the underlying data gets mutated, then the page gets re-rendered to reflect said changes.
 -   Credit me (Huangphoux) if you decide to use all, or some part of this.
 
-# Hypermedia + SEE + Brotli + Fat Morphing
+# Hypermedia + Fat Morphing + SSE + Brotli 
 
 1.  **Generalize hypermedia controls**: `data-on:click="@get('/endpoint')"`
     -   Any element can make HTTP requests: `data-on`
     -   Any event can trigger HTTP requests: `click`
-    -   HTML can interact with the server: `@get()`
-2.  **SSE**: open an long-lived connection to stream reponses to the client, compressing that stream using **Brotli**
-3.  **Fat Morphing**: responses can replace elements within the current document
+    -   HTML can interact with the server: `@get('/endpoint')`
+2.  **Fat Morphing**: responses can replace elements within the current document
     -   Respond with `<main>`
     -   Morph elements that have matching IDs in both the new and the old `<main>`
+3.  **SSE**: open an long-lived connection to stream reponses to the client, compressing that stream using **Brotli**
 
 # data-on: the only Attribute that you would need
 
--   `data-on-intersect`
--   `data-on-interval`
--   `data-on-signal-patch`
--   `data-on-signal-patch-filter`
--   `data-init`: used to be `data-on-load`
+-   There are also other `data-on` attributes for non-standard events:
+    -   `data-init`: used to be `data-on-load`
+    -   `data-on-intersect`
+    -   `data-on-interval`
+    -   `data-on-signal-patch`
+    -   `data-on-signal-patch-filter`
 
 # Fat Morphing
 
 -   Suitable for collaborative app: all users see the same updated page
 
-## Fat
+## Fat: Sending Complete `<main>`
 
--   Send the whole modified `<main>`: avoid the abundance of endpoints for sending fragments
--   `data-on` on `<main>` is enough
+-   Send the entire modified `<main>` instead of small, specific fragments.
+-   Reduce the need for numerous endpoints to handle fragment updates.
+-   Event Bubbling: `data-on` on `<main>` is enough
 -   Use `data-on:pointerdown/mousedown` rather than `data-on:click` → No need to wait for `pointerup/mouseup`
 
 ## Morphing
@@ -65,7 +67,7 @@
 
 ---
 
-From this point onward, it's mostly minor details regarding using Datastar.
+# From this point onward, it's mostly minor details regarding using Datastar.
 
 # Misc.
 
@@ -75,13 +77,14 @@ From this point onward, it's mostly minor details regarding using Datastar.
 # Multiplayer
 
 -   Multiplayer: real time + collaborative
--   How to show user-specific view?
+-   The function rendering the view should not distinguish users, so that it renders the same view for everyone
+-   To show user-specific views, create them in that same function, and send them to the that user's stream only
 
 # Signals
 
 -   Add client-side reactivity to a page
 -   Use as few signals as possible to avoid the need for signal management, alongside with state management
--   Server has full access to the client's state by sending all signals as an object in every request
+-   Datastar stores all signals in one object in every request, so the server still has full access to the client's state
 
 # Cons
 
