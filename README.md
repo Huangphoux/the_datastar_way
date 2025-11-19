@@ -6,7 +6,11 @@
 -   Essentially, it's like making a game: the app listens for user actions interacting with the page, the underlying data gets mutated, then the page gets re-rendered to reflect said changes.
 -   Credit me (Huangphoux) if you decide to use all, or some part of this.
 
-# Hypermedia + Fat Morphing + SSE + Brotli 
+# Datastar
+
+-
+
+# Hypermedia + Fat Morphing + SSE + Brotli
 
 1.  **Generalize hypermedia controls**: `data-on:click="@get('/endpoint')"`
     -   Any element can make HTTP requests: `data-on`
@@ -39,6 +43,7 @@
 
 ## Morphing
 
+-   Also called "Patching": `Create`, `Update` and `Delete`
 -   Leave it to the algorithm to modify the current page
 
 ## View = Function(State)
@@ -48,6 +53,17 @@
 -   All data stored and processed on the server ⇒ No need for separating the Front-End and the Back-End
 -   On every data change, the page gets re-rendered
 -   Each page only needs one single render function
+
+### CQRS
+
+-   Command Query Responsibility Segregation
+-   Commands
+    -   `Create`, `Update` and `Delete`
+    -   User actions on the page that change the application's states
+-   Query
+    -   `Read`
+    -   The render function retrieves data to compute the view
+-   Separate Commands from Query: any user actions that interact with the page should affect the data underneath, so that the re-rendered view can reflect those changes
 
 # SSE + Brotli
 
@@ -70,8 +86,8 @@
 
 # Misc.
 
--   Path parameter > Query parameter / Body: path parameters introduce hierarchy
--   CQRS: Separating `Create`, `Update` and `Delete` operations from `Read`
+-   Use query parameters or request body to store states in the URL
+-   Avoid path parameters as they enforce a hierarchical structure
 
 # Multiplayer
 
@@ -84,10 +100,15 @@
 -   Add client-side reactivity to a page
 -   Use as few signals as possible to avoid the need for signal management, alongside with state management
 -   Datastar stores all signals in one object in every request, so the server still has full access to the client's state
+-   Declare all signals with `__ifmissing` to prevent mutating existing signals: `data-signals:foo__ifmissing="1"`
+    -   `__ifmissing`: Only patches signals if their keys do not already exist.
+-   Add an underscore to not include that signal in requests to the backend: `data-signals:_foo="1"`
+-   Signals are not stored persistently, and are not shared between tabs.
 
 # Limitations
 
 -   No progressive enhancement
+    -   JavaScript is needed.
 -   No History API support
     -   Add new history entry: redirect to a new page
     -   How to deal with state
