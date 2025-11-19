@@ -5,6 +5,7 @@
 -   This is a distilled version of my personal notes from reading various thinkpiece about a novel way of making websites / web apps using [Datastar](https://data-star.dev/).
 -   Essentially, it's like making a game: the app listens for user actions interacting with the page, the underlying data gets mutated, then the page gets re-rendered to reflect said changes.
 -   Credit me ([Huangphoux](https://github.com/Huangphoux/)) if you use any part of this.
+-   I added some additional sources that seems relevant, mostly of my own picking. 
 
 # [Datastar](https://data-star.dev/)
 
@@ -95,7 +96,7 @@
 
 # Multiplayer
 
--   Multiplayer: real time + collaborative
+-   Multiplayer: [real-time](https://example.andersmurphy.com/) + [collaborative](https://checkboxes.andersmurphy.com/)
 -   The function rendering the view don't distinguish users, so that it renders the same view for everyone
 -   To show user-specific views, create them in that same function, and send them to that user's stream only
 
