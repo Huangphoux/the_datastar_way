@@ -9,7 +9,7 @@
 
 # Datastar
 
--   Consider using Datastar if you want to build [real-time](https://example.andersmurphy.com/), [collaborative](https://checkboxes.andersmurphy.com/) web apps.
+-   Consider using Datastar if you want to build [real-time](https://example.andersmurphy.com/), [collaborative](https://checkboxes.andersmurphy.com/) web apps without sacrificing any [performance](https://andersmurphy.com/2025/04/07/clojure-realtime-collaborative-web-apps-without-clojurescript.html).
 -   You can also utilize this technology to build simple websites as well, since it's a [simpler mental model](https://yagni.club/3m475dwkjvc2o/l-quote/39_0-39_329#39_0).
 
 # [Hypermedia System](https://hypermedia.systems/) + [Fat Morphing](https://data-star.dev/how_tos/prevent_sse_connections_closing) + [SSE](https://yagni.club/3m475dwkjvc2o) + [Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html)
@@ -19,19 +19,24 @@
     -   Use [`data-on`](https://data-star.dev/reference/attributes#data-on) to generalize hypermedia controls: `data-on:click="@get('/endpoint')"`
         -   Any [element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements) can make HTTP requests: `data-on`
         -   Any [event](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Events) can trigger HTTP requests: `click`
-        -   HTML can use all of the [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods): `@get('/endpoint')`
+        -   HTML can use all of the HTTP request methods using [Backend Actions](https://data-star.dev/guide/backend_requests#backend-actions): `@get('/endpoint')`
 
 2.  **Fat Morphing**: respond with the whole modified `<body>`, then morph elements that have matching IDs in both the new and the old `<body>`
 3.  **SSE**: open an long-lived connection to stream reponses to the client, compressing that stream using **Brotli**
 
 # data-on: the only [attribute](https://data-star.dev/reference/attributes) that you would need
 
+-   Check out Datastar [examples](https://data-star.dev/examples)!
+
 -   There are also other `data-on` attributes for non-standard events:
     -   [`data-init`](https://data-star.dev/reference/attributes#data-init): used to be [`data-on-load`](https://github.com/starfederation/datastar/releases/tag/v1.0.0-RC.6)
     -   [`data-on-intersect`](https://data-star.dev/reference/attributes#data-on-intersect)
     -   [`data-on-interval`](https://data-star.dev/reference/attributes#data-on-interval)
     -   [`data-on-signal-patch`](https://data-star.dev/reference/attributes#data-on-signal-patch)
-
+-   The string evaluated by `data-on` attributes are Datastar [expressions](https://data-star.dev/guide/datastar_expressions), you can do more than using only Backend Actions
+    -   `data-on:click="confirm('Are you sure?') && @delete('/examples/delete_row/0')"`
+-   Be sure to use request indicators, as they are an important UX aspect of any distributed apps: `data-indicator:_fetching`, `data-attr:disabled="$_fetching"`
+    - `$_fetching` is a [signal](#signals) 
 # Fat Morphing
 
 -   Suitable for collaborative app: all users see the same updated page
@@ -52,7 +57,7 @@
 
 -   A function turning state into view
 -   Present data using HTML, then render it as a page
--   All data stored and processed on the server ⇒ No need for separating the Front-End and the Back-End
+-   All data stored and processed on the server
 -   On every data change, the page gets re-rendered
 -   Each page only needs one single render function
 
@@ -80,7 +85,7 @@
 -   Suitable for real-time apps: updates can be sent in a stream that get compressed for its whole duration
 -   Use HTTP/2 or HTTP/3 to allow for more [connections](https://github.com/alvarolm/datastar-resources/blob/main/docs/considerations.md#6-connection-sse-limit-on-http11)
 -   Can be inspected in the browser's DevTools
--   `text/html` for initial page loads and [`text/event-stream`](https://data-star.dev/essays/event_streams_all_the_way_down) for everything else
+-   `text/html` for initial page loads and [`text/event-stream`](https://data-star.dev/essays/event_streams_all_the_way_down#the-solution) for everything else
 -   [How do Server-Sent Events actually work?](https://stackoverflow.com/questions/7636165/how-do-server-sent-events-actually-work/11998868#11998868)
 
 ## Brotli
