@@ -1,4 +1,4 @@
-# Way of the [Datastar](https://data-star.dev/)
+# The [Datastar](https://data-star.dev/) Way
 
 ## [Author](https://github.com/Huangphoux/) Notes
 
@@ -40,7 +40,7 @@
 
 -   Send the entire modified `<body>` instead of small, specific fragments.
 -   Reduce the need for numerous endpoints to handle fragment updates.
--   [Event Bubbling](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling): `data-on` on `<body>` is enough
+-   [Event Bubbling](https://javascript.info/bubbling-and-capturing): `data-on` on `<body>` is enough
 -   Use `data-on:pointerdown/mousedown` rather than `data-on:click` → No need to wait for `pointerup/mouseup`
 
 ## Morphing
@@ -56,23 +56,29 @@
 -   On every data change, the page gets re-rendered
 -   Each page only needs one single render function
 
-### CQRS
+## CQRS
 
--   Command Query Responsibility Segregation
--   Commands
-    -   `Create`, `Update` and `Delete` actions
-    -   User actions on the page that change the application's states
--   Query
-    -   `Read` action
-    -   The render function retrieves data to compute the view
--   Separate Commands from Query: any user actions that interact with the page should affect the data underneath, so that the re-rendered view can reflect those changes
+-   Command Query Responsibility Segregation: separate Commands and Queries
+-   Commands = `Create`, `Update` and `Delete`
+    -   `POST`, `PATCH`, `DELETE`: change the data
+    -   These actions should not directly update the view
+        -   Queries already take care of that responsibility
+        -   Instead of patching elements, patching signals is permitted
+-   Queries: `Read`
+    -   `GET`: retrieve data / watch for data changes → compute the view
+    -   Work Sharing / Caching: cache data so the query runs only once, no matter how many users connect
+
+## Event Sourcing
+
+-   Queries watch for data changes by keeping a log of Commands
+-   Whenever there's a new Command, the Queries retrieve the modified data
 
 # SSE + Brotli
 
 ## SSE
 
 -   Suitable for real-time apps: updates can be sent in a stream that get compressed for its whole duration
--   Use [HTTP/2](https://github.com/alvarolm/datastar-resources/blob/main/docs/considerations.md#6-connection-sse-limit-on-http11) to allow more connections
+-   Use HTTP/2 or HTTP/3 to allow for more [connections](https://github.com/alvarolm/datastar-resources/blob/main/docs/considerations.md#6-connection-sse-limit-on-http11)
 -   Can be inspected in the browser's DevTools
 -   `text/html` for initial page loads and [`text/event-stream`](https://data-star.dev/essays/event_streams_all_the_way_down) for everything else
 -   [How do Server-Sent Events actually work?](https://stackoverflow.com/questions/7636165/how-do-server-sent-events-actually-work/11998868#11998868)
@@ -88,7 +94,7 @@
 
 # From this point onward, it's mostly minor details regarding using Datastar.
 
-# Misc.
+# [URL Design](https://gist.github.com/lobre/7432c39d7f0c1c4d9c8afe1bd173f0d4#results)
 
 -   Use query parameters or request body to store states in the URL
 -   Avoid path parameters as they enforce a hierarchical structure
