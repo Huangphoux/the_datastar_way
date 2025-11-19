@@ -40,13 +40,12 @@
 ## Morphing
 
 -   Leave it to the algorithm to modify the current page
--   ❌ Merging, ✅ Patching
 
 ## View = Function(State)
 
 -   A function turning state into view
 -   Present data using HTML, then render it as a page
--   All data stored and processed on the server ⇒ No CORS
+-   All data stored and processed on the server ⇒ No need for separating the Front-End and the Back-End
 -   On every data change, the page gets re-rendered
 -   Each page only needs one single render function
 
@@ -63,7 +62,7 @@
 -   Specifically created to compress HTTP stream
 -   Compressing a stream of data is better because of duplications in the stream, compression can reduce those duplications
 -   Tunable context window: how much the compressor can remember about the past and current data
-    -   The right amount can reduce network for sending data, and CPU usage on the client
+    -   Increase from the default 32 kB can reduce network for sending data, and CPU usage on the client
 
 ---
 
@@ -77,8 +76,8 @@
 # Multiplayer
 
 -   Multiplayer: real time + collaborative
--   The function rendering the view should not distinguish users, so that it renders the same view for everyone
--   To show user-specific views, create them in that same function, and send them to the that user's stream only
+-   The function rendering the view don't distinguish users, so that it renders the same view for everyone
+-   To show user-specific views, create them in that same function, and send them to that user's stream only
 
 # Signals
 
@@ -86,7 +85,7 @@
 -   Use as few signals as possible to avoid the need for signal management, alongside with state management
 -   Datastar stores all signals in one object in every request, so the server still has full access to the client's state
 
-# Cons
+# Limitations
 
 -   No progressive enhancement
 -   No History API support
