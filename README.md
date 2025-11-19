@@ -11,25 +11,26 @@
 -   Consider using [Datastar](https://data-star.dev/) if you want to build [real-time](https://example.andersmurphy.com/), [collaborative](https://checkboxes.andersmurphy.com/) web apps.
 -   You can also utilize this technology to build simple websites as well, since it's a [simpler mental model](https://yagni.club/3m475dwkjvc2o/l-quote/39_0-39_329#39_0).
 
-# [Hypermedia](https://hypermedia.systems/) + [Fat Morphing](https://data-star.dev/how_tos/prevent_sse_connections_closing) + [SSE](https://yagni.club/3m475dwkjvc2o) + [Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html)
+# [Hypermedia System](https://hypermedia.systems/) + [Fat Morphing](https://data-star.dev/how_tos/prevent_sse_connections_closing) + [SSE](https://yagni.club/3m475dwkjvc2o) + [Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html)
 
-1.  **Generalize [hypermedia](https://hypermedia.systems/) controls**: `data-on:click="@get('/endpoint')"`
-    -   Any element can make HTTP requests: `data-on`
-    -   Any event can trigger HTTP requests: `click`
-    -   HTML can interact with the server: `@get('/endpoint')`
-2.  [**Fat Morphing**](https://data-star.dev/how_tos/prevent_sse_connections_closing): responses can replace elements within the current document
+-   [Hypermedia System](https://hypermedia.systems/): send HTML over the wire instead of [JSON](https://htmx.org/essays/hateoas/)
+    -   Use `data-on` to generalize [hypermedia](https://hypermedia.systems/) controls: `data-on:click="@get('/endpoint')"`
+        -   Any element can make HTTP requests: `data-on`
+        -   Any event can trigger HTTP requests: `click`
+        -   HTML can interact with the server: `@get('/endpoint')`
+
+1.  [**Fat Morphing**](https://data-star.dev/how_tos/prevent_sse_connections_closing): responses can replace elements within the current document
     -   Respond with `<main>`
     -   Morph elements that have matching IDs in both the new and the old `<main>`
-3.  **[SSE](https://yagni.club/3m475dwkjvc2o)**: open an long-lived connection to stream reponses to the client, compressing that stream using **[Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html)**
+2.  **[SSE](https://yagni.club/3m475dwkjvc2o)**: open an long-lived connection to stream reponses to the client, compressing that stream using **[Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html)**
 
-# data-on: the only [Attribute](https://data-star.dev/reference/attributes) that you would need
+# [data-on](https://data-star.dev/reference/attributes#data-on): the only [attribute](https://data-star.dev/reference/attributes) that you would need
 
--   There are also other `data-on` [attributes](https://data-star.dev/reference/attributes) for non-standard events:
-    -   `data-init`: used to be `data-on-load`
-    -   `data-on-intersect`
-    -   `data-on-interval`
-    -   `data-on-signal-patch`
-    -   `data-on-signal-patch-filter`
+-   There are also other [`data-on`](https://data-star.dev/reference/attributes#data-on) [attributes](https://data-star.dev/reference/attributes) for non-standard events:
+    -   [`data-init`](https://data-star.dev/reference/attributes#data-init): used to be [`data-on-load`](https://github.com/starfederation/datastar/releases/tag/v1.0.0-RC.6)
+    -   [`data-on-intersect`](https://data-star.dev/reference/attributes#data-on-intersect)
+    -   [`data-on-interval`](https://data-star.dev/reference/attributes#data-on-interval)
+    -   [`data-on-signal-patch`](https://data-star.dev/reference/attributes#data-on-signal-patch)
 
 # [Fat Morphing](https://data-star.dev/how_tos/prevent_sse_connections_closing)
 
@@ -111,7 +112,7 @@
 
 -   No [progressive enhancement](https://en.wikipedia.org/wiki/Progressive_enhancement)
     -   JavaScript is needed.
-    -   Consider alternatives: [htmx](https://htmx.org/), [Alphine-Ajax](https://alpine-ajax.js.org/)
+    -   Consider alternatives: [htmx](https://htmx.org/)'s [`hx-boost`](https://htmx.org/attributes/hx-boost/), [Alpine](https://alpinejs.dev/)'s [Alpine-Ajax](https://alpine-ajax.js.org/)
 -   Modern browsers only (no IE11 support)
 -   No History API support
     -   Add new history entry: [redirect](https://data-star.dev/how_tos/redirect_the_page_from_the_backend) to a new page
