@@ -181,3 +181,6 @@
 > https://data-star.dev/videos
 
 > https://github.com/WICG/declarative-partial-updates
+
+> In the project's defense: datastar only makes sense when you think in a certain way: event streams, server controls the state, the ui becomes a projection of the stream. The maintainers frequently see people who stubbornly refuse to give this style of thinking a chance, and instead attempt to bend what they've made to traditional styles of thinking which lead to things being worse for the person asking for help. They've seen this pattern so many times, they are quick to jump
+> 
