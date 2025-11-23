@@ -45,7 +45,9 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
 
 ## Fat Morphing
 
-Suitable for collaborative app: all users see the same updated page
+- Suitable for collaborative app: all users see the same updated page
+- Behave similarly to htmx's [`hx-boost`](https://htmx.org/attributes/hx-boost/), but Datastar morphs and retains elements, instead of swapping the whole `<body>` like htmx.
+
 
 ### Fat
 
@@ -61,9 +63,16 @@ Suitable for collaborative app: all users see the same updated page
 
 ### Morphing
 
--   Also called "[Patching](https://data-star.dev/guide/getting_started#patching-elements)": `Create`, `Update` and `Delete` elements
+You don't actually need to know how the algorithm works under the hood if you send the whole HTML anyways.
+
+
+<details><summary>Additional Infos</summary>
+
+-   It can also be called "[Patching](https://data-star.dev/guide/getting_started#patching-elements)": `Create`, `Update` and `Delete` elements
 -   There are other algorithms as well: [Morphlex](https://github.com/yippee-fun/morphlex) (the introductory [article](https://joel.drapper.me/p/morphlex/)), and Datastar's TypeScript [port](https://github.com/starfederation/datastar/blob/develop/library/src/engine/morph.ts) of Idiomorph.
 -   The algorithm [retains](https://en.wikipedia.org/wiki/Retained_mode) unchanged elements, but the way we respond with the whole HTML is [immediate](<https://en.wikipedia.org/wiki/Immediate_mode_(computer_graphics)>).
+
+</details>
 
 ### How to do Fat Morphing optimally
 
