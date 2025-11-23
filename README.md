@@ -23,7 +23,7 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
         -   Any [event](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Events) can trigger HTTP requests: `click`
         -   Use [Backend Actions](https://data-star.dev/guide/backend_requests#backend-actions) to send any type of requests: `@get('/endpoint')`
 
-2.  **Fat Morphing**: respond with the modified HTML, the morphing [algorithm](https://github.com/bigskysoftware/idiomorph) will convert the old page into the new modified one.
+2.  **Fat Morphing**: respond with the whole modified page, the morphing [algorithm](https://github.com/bigskysoftware/idiomorph) will convert the old page into the new modified one.
 3.  **SSE**: open an long-lived connection to stream reponses to the client.
 
 ## data-on: the only [attribute](https://data-star.dev/reference/attributes) that you would need
@@ -51,7 +51,7 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
 
 ### Fat
 
--   Send the entire modified HTML instead of small, specific fragments.
+-   Send the entire modified page instead of small, specific fragments.
 -   Reduce the amount of endpoints needed to handle fragment updates.
 
 <details><summary>Additional Infos</summary>
@@ -63,14 +63,14 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
 
 ### Morphing
 
-You don't actually need to know how the algorithm works under the hood if you send the whole HTML anyways.
+You don't actually need to know how the algorithm works under the hood if you respond with the whole page anyways.
 
 
 <details><summary>Additional Infos</summary>
 
 -   It can also be called "[Patching](https://data-star.dev/guide/getting_started#patching-elements)": `Create`, `Update` and `Delete` elements
 -   There are other algorithms as well: [Morphlex](https://github.com/yippee-fun/morphlex) (the introductory [article](https://joel.drapper.me/p/morphlex/)), and Datastar's TypeScript [port](https://github.com/starfederation/datastar/blob/develop/library/src/engine/morph.ts) of Idiomorph.
--   The algorithm [retains](https://en.wikipedia.org/wiki/Retained_mode) unchanged elements, but the way we respond with the whole HTML is [immediate](<https://en.wikipedia.org/wiki/Immediate_mode_(computer_graphics)>).
+-   The algorithm [retains](https://en.wikipedia.org/wiki/Retained_mode) unchanged elements, but the way we respond with the whole page is [immediate](<https://en.wikipedia.org/wiki/Immediate_mode_(computer_graphics)>).
 
 </details>
 
