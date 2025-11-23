@@ -100,7 +100,7 @@ This is one way of doing Fat Morphing, Datastar can do polling just fine.
 -   Whenever there's a new Command, the Queries retrieve the modified data.
 -   Use the Publish-Subscribe pattern to implement Event-Driven Architecture
 
-## [View = Function(State)](https://yagni.club/3m3anpetejc23)
+### [View = Function(State)](https://yagni.club/3m3anpetejc23)
 
 -   By using CQRS, our app becomes the purest `view=function(state)`
 -   A function turning state into view: present data using HTML, then compute it as a page ⇒ Data drives views
