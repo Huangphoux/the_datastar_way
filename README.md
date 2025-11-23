@@ -133,7 +133,7 @@ Suitable for real-time apps: updates can be sent in a stream that get compressed
     -   Compression reduces those duplications effectively by forward and backward referencing.
     -   Compression ratio is much larger over streams than when compressing a single HTML/JSON response.
 -   Tunable context window
-    -   How much the server and the client can remember about the past and future data.
+    -   The memory shared between the server and the client, stores the past and future data.
     -   You should increase it from the default 32 kB to reduce network and CPU usage on the client.
 -   A [demonstration](https://discord.com/channels/1296224603642925098/1296225503610671224/1385153666306019401) of Brotli's effective compression by Anders Murphy. ![](static/anders_brotli.gif)
 
