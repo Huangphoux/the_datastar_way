@@ -7,8 +7,8 @@
 # Multiplayer
 
 -   Multiplayer: real-time + collaborative.
--   Multiplayer is the default behavior, since the views are shared to all users
--   The function rendering the view doesn't distinguish users, so that it renders the same view for everyone
+-   Multiplayer is the default behavior, since the views are shared to all users.
+-   The function rendering the view doesn't distinguish users, so that it renders the same view for everyone.
 -   To show user-specific views, create them in that same function, and send them to that user's stream only.
 
 # [Signals](https://data-star.dev/guide/reactive_signals)

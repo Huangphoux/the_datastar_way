@@ -2,13 +2,11 @@
 
 > The server has a global store for global count, and a session store, based on your session cookie, is used for user count. If you use F12 tools network tab in the browser you can see that when the user button is clicked the user button html is patched via a regular http PATCH request and response. When the global button is clicked, a PATCH request is sent to the server but there's just an OK response because the global button is updated by an long-running SSE connection on the page which sends an event from the server to your browser whenever anyone clicks the the global button.
 
-> I wouldn’t call it the “default” mode (though it probably is for you given the way you build apps). But “multi-player” is definitely the answer to most “what does Datastar give me that framework X doesn’t?” questions.
 
 > I find that if you want partial multiplayer you still have to do some considerations, like what if some parts need it but you want other parts of the page to only have your state. Sure its great for apps where everybody is seeing the same thing
 
 > yes, you have to think about what user X can see... that doesn't go away
 
-> Client enters data —> send to server. Server does all the things —> completely transition the client to the new state in 1 hit. So much less going over the wire. Don’t ever need 30x redirects
 
 > htmx pattern: Client enters data —> send update to server, Server does some work —> send state update to client, Client morphs update, decides where to go from there, Client requests new view —> to server, Server updates state —> sends new view morph and signals to client, Even a simple (?) thing like a login / registration / forgot password form can end up quite chatty, and involve 30x redirects
 
@@ -18,7 +16,6 @@
 
 > Will add to that - have encountered resistance in Enterprise(tm), where the “experts” argue that even htmx is too heavy on the server compared to react .. because SPA architecture somehow magically offloads performance to the mass of client machines … somehow. Even though it’s objectively easy to prove that generating html through a template is basically a no-op compared to generating equivalent json responses. The idea of managing all client state on the server must be enough to make these same “experts” wet their beds. Compare a few MB of fast access memory out of L3 cache vs the overhead of so many extra round trips doesn’t even compute in their minds. In their little world, accepting another socket connection, possibly spawning another thread, decoding and validating another encrypted cookie .. these are all “free” operations in the fantasy world of the enterprise architect.
 
-> https://github.com/starfederation/datastar-python/tree/develop/examples/fasthtml, All examples (except Django) include Inline Script Metadata (PEP 723), allowing them to be run with uv without first installing dependencies.
 
 > https://github.com/zangster300/northstar/tree/main/features
 
@@ -54,3 +51,5 @@
 - https://data-star.dev/examples/form_data
 
 > I do a mix of everythingz whatever best does the job. Some things are just straight MPA, post to an endpoint and return a page/redirect, some are that with `@post`, some are `@post` and return X events, some are CQRS with a long lived `/updates`
+
+- [SSE vs WebSockets vs Long Polling](https://www.youtube.com/watch?v=n9mRjkQg3VE)
