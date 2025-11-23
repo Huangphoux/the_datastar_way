@@ -56,6 +56,7 @@ Without much adjustments (differentiating users by [session IDs](https://gist.gi
 
 -   Suitable for collaborative app: all users see the same updated page
 -   Behave similarly to htmx's [`hx-boost`](https://htmx.org/attributes/hx-boost/), but Datastar morphs and retains elements, instead of swapping the whole `<body>` like htmx.
+-   Yes, you're doing MPA (Multi-Page Application). It's [hypermedia-driven](https://htmx.org/essays/hypermedia-driven-applications/). Did you read [the book](https://hypermedia.systems/)?
 
 ### Fat
 
