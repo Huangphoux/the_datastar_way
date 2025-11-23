@@ -67,7 +67,7 @@ Suitable for collaborative app: all users see the same updated page
 
 ### How to do Fat Morphing optimally
 
--   This is just one way of doing Fat Morphing, Datastar can do polling just fine.
+This is one way of doing Fat Morphing, Datastar can do polling just fine.
 
 <details><summary>Optimal Fat Morphing</summary>
 
