@@ -6,6 +6,7 @@
     -   Ultimate is also in Penultimate anyways
     -   Double PP joke
     -   Imitating [T3 Stack](https://create.t3.gg/)
+-   Why Python? [These](https://kennethfriedman.org/thoughts/2019/the-2034-website/) [guys](https://fastht.ml/about/tech#sec1) took the words out of my mouth.
 
 ## The actual stack
 -   FastHTML

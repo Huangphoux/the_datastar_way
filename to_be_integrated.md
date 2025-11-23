@@ -50,3 +50,7 @@
 - https://github.com/derekr/get-to-getting?tab=readme-ov-file
 - https://gist.github.com/gazpachoking/3a695467b4f25ad66bb8404e4209ae8b
 - https://discord.com/channels/1296224603642925098/1362094432370819406
+
+- https://data-star.dev/examples/form_data
+
+> I do a mix of everythingz whatever best does the job. Some things are just straight MPA, post to an endpoint and return a page/redirect, some are that with `@post`, some are `@post` and return X events, some are CQRS with a long lived `/updates`
