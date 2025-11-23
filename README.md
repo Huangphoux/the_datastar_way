@@ -23,8 +23,8 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
         -   Any [event](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Events) can trigger HTTP requests: `click`
         -   Use [Backend Actions](https://data-star.dev/guide/backend_requests#backend-actions) to send any type of requests: `@get('/endpoint')`
 
-2.  **Fat Morphing**: respond with the modified HTML, the morphing [algorithm](https://github.com/bigskysoftware/idiomorph) will convert the old page into the modified one.
-3.  **SSE**: open an long-lived connection to stream reponses to the client, compressing that stream using **Brotli**
+2.  **Fat Morphing**: respond with the modified HTML, the morphing [algorithm](https://github.com/bigskysoftware/idiomorph) will convert the old page into the new modified one.
+3.  **SSE**: open an long-lived connection to stream reponses to the client.
 
 ## data-on: the only [attribute](https://data-star.dev/reference/attributes) that you would need
 
@@ -45,7 +45,7 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
 
 ## Fat Morphing
 
--   Suitable for collaborative app: all users see the same updated page
+Suitable for collaborative app: all users see the same updated page
 
 ### Fat
 
@@ -103,19 +103,16 @@ The ideal (not dogmatic) way of using Datastar to build [real-time](https://exam
 
 ## SSE
 
--   Send chunked response to clients
--   Suitable for real-time apps: updates can be sent in a stream that get compressed for its whole duration
+Suitable for real-time apps: updates can be sent in a stream that get compressed for its whole duration
+
 -   Use HTTP/2 or HTTP/3 to allow for more [connections](https://github.com/alvarolm/datastar-resources/blob/main/docs/considerations.md#6-connection-sse-limit-on-http11)
--   SSE streams can be inspected in the browser's DevTools
--   `text/html` for initial page loads and [`text/event-stream`](https://data-star.dev/essays/event_streams_all_the_way_down#the-solution) for everything else
--   [How do Server-Sent Events actually work?](https://stackoverflow.com/questions/7636165/how-do-server-sent-events-actually-work/11998868#11998868)
+-   `text/html` for the initial page load, then [`text/event-stream`](https://data-star.dev/essays/event_streams_all_the_way_down#the-solution) for subsequent responses
 
-## [Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html)
+### How to optimize the stream
 
-Using Brotli is recommended, and not required.
+<details><summary>Brotli compression</summary>
 
-<details><summary>Summary of the linked article</summary>
-
+- Using [Brotli](https://andersmurphy.com/2025/04/15/why-you-should-use-brotli-sse.html) to compress the stream is recommended, and not required.
 -   Specifically created to compress HTTP stream
 -   Compressing a stream of data is better because of duplications in the stream, compression can reduce those duplications
 -   Tunable context window: how much the compressor can remember about the past and current data
