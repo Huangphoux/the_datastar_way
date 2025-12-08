@@ -66,13 +66,14 @@ Without much adjustments (differentiating users by [session IDs](https://gist.gi
 <details><summary>Additional Infos</summary>
 
 -   Be sure to use [Event Bubbling](https://javascript.info/bubbling-and-capturing)
--   Use `data-on:pointerdown/mousedown` rather than `data-on:click` → No need to wait for `pointerup/mouseup`
+-   Use `data-on:pointerdown/mousedown` rather than `data-on:click` to save the time waiting for `pointerup/mouseup`.
 
 </details>
 
 ### Morphing
 
-You don't actually need to know how the algorithm works under the hood if you respond with the whole page anyways.
+- Transform the existing DOM into the new modified one, while preserving the state.
+- Here's a video provided by Jorge Manrubia in [this article](https://dev.37signals.com/a-happier-happy-path-in-turbo-with-morphing/), demonstrating the difference between `<body>` swapping and morphing. <video poster="" src="https://videos.37signals.com/dev/assets/videos/a-happier-happy-path-in-turbo-with-morphing/refresh-comparison.mp4" controls=""></video>
 
 <details><summary>Additional Infos</summary>
 

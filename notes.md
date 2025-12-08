@@ -32,3 +32,12 @@
         -   Make state a part of the URL
         -   Put state in cookie
 -   Offline functionality: uncharted territory, consider using [Service Workers](https://github.com/mvolkmann/htmx-offline).
+
+# HTML generator
+- A better alternative to templating engines
+- Use your favorite language's features to write HTML directly in your code
+- Maintain [Locality of Behaviour (LoB)](https://htmx.org/essays/locality-of-behaviour/) better: no separate file to maintain
+- [Anders Muprhy](https://andersmurphy.com/) do this in their [Game of Life](https://github.com/andersmurphy/hyperlith/blob/master/examples/game_of_life/src/app/main.clj) code so I know I'm right 😎.
+
+# FastHTML
+- All-in-one package 
